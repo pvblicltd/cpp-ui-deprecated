@@ -17,7 +17,7 @@ angular.module('app')
         templateUrl:'css.html'
       })
       .when('/layouts', {
-        templateUrl:'css.html'
+        templateUrl:'layouts.html'
       })
       .otherwise({
         redirectTo:'/',
