@@ -11,17 +11,17 @@ angular.module('app')
     $locationProvider.hashPrefix('!');
     $routeProvider
       .when('/modules', {
-        templateUrl:'demo/modules.html'
+        templateUrl:'modules.html'
       })
       .when('/css', {
-        templateUrl:'demo/css.html'
+        templateUrl:'css.html'
       })
       .when('/layouts', {
-        templateUrl:'demo/css.html'
+        templateUrl:'css.html'
       })
       .otherwise({
         redirectTo:'/',
-        templateUrl:'demo/getting-started.html'
+        templateUrl:'getting-started.html'
       });
   })
   .config(function (hljsServiceProvider) {
