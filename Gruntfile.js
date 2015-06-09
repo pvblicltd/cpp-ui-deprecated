@@ -6,17 +6,33 @@ var _ = require('underscore');
 _.str = require('underscore.string');
 _.mixin(_.str.exports());
 
+var semver = require('semver');
+var exec = require('exec');
+
 module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  var gitVersion;
 
   grunt.util.linefeed = '\n';
 
   grunt.initConfig({
     // get the packages
     pkg: grunt.file.readJSON('./package.json'),
+    shell: {
+      options: {
+        stdout: true,
+        stderr: true
+      },
+      tag: {
+        command: [
+          'git tag <%= grunt.option("tag") %>',
+          'git push origin --tags'
+        ].join(' && ')
+      }
+    },
     ngversion: '1.3.15',
     modules: [],//to be filled in by build task
     dist: 'dist',
@@ -181,6 +197,44 @@ module.exports = function (grunt) {
         },
       },
     },
+  });
+
+
+  // Auto increment GIT TAG and PUSH to ORIGIN
+  grunt.registerTask('tag:patch', ['tag']);
+
+  grunt.registerTask('tag:minor', function() {
+    grunt.option('tagType', 'minor');
+    grunt.task.run(['tag']);
+  });
+  grunt.registerTask('tag:major', function() {
+    grunt.option('tagType', 'major');
+    grunt.task.run(['tag']);
+  });
+
+  grunt.registerTask('tag', function() {
+    if (grunt.option('tagType') !== 'major' &&
+      grunt.option('tagType') !== 'minor') {
+      grunt.option('tagType', 'patch');
+    }
+    var done = this.async();
+    exec('git describe --tags --abbrev=0',
+      function(err, stdout, stderr) {
+        if (stderr) {
+          grunt.log.error(stderr);
+        } else {
+          gitVersion = semver.inc(
+            stdout.trim(),
+            grunt.option('tagType')
+          );
+          grunt.log.ok('Tagging: ' + gitVersion +
+            ' (' + grunt.option('tagType') + ')');
+          grunt.option('tag', gitVersion);
+          grunt.task.run(['shell:tag']);
+        }
+        done();
+      }
+    );
   });
 
   //Common ui.cpp module containing all modules for src and templates
