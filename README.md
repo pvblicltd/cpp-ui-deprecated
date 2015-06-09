@@ -2,6 +2,8 @@
 
 ## Introduction
 
+For instructions please go here: [http://pvblicltd.github.io/cpp.ui/](http://pvblicltd.github.io/cpp.ui/)
+
 
 ## Dependencies
 Requires Node & Yoeman
