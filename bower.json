@@ -5,6 +5,10 @@
     "dist/*",
     "dist/less/*"
   ],
+  "ignore": [
+    ".jshintrc",
+    ".editorconfig"
+  ],
   "devDependencies": {
     "angular": "~1.3.0",
     "angular-mocks": "~1.3.0",
