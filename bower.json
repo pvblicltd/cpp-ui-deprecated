@@ -1,0 +1,18 @@
+{
+  "name": "cpp-ui",
+  "version": "0.0.1",
+  "devDependencies": {
+    "angular": "~1.3.0",
+    "angular-mocks": "~1.3.0",
+    "angular-smoothscroll": "~1.1.1",
+    "jquery": "2.1.1",
+    "bootstrap": "~3.3",
+    "angular-bootstrap": "~0.10",
+    "angular-route": "~1.3.0",
+    "angular-ui-utils": "~0.2.3",
+    "angular-highlightjs": "~0.4.1"
+  },
+  "resolutions": {
+    "jquery": "2.1.1"
+  }
+}
