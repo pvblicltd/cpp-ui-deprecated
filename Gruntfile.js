@@ -43,7 +43,7 @@ module.exports = function (grunt) {
       modules: 'angular.module("<%= pkg._ngPrefix %>", [<%= srcModules %>]);',
       tplmodules: 'angular.module("<%= pkg._ngPrefix %>.tpls", [<%= tplModules %>]);',
       all: 'angular.module("<%= pkg._ngPrefix %>", ["<%= pkg._ngPrefix %>.tpls", <%= srcModules %>]);',
-      lessFile: '<%= dist %>/<%= filename %>-<%= pkg.version %>.less',
+      lessFile: '<%= dist %>/<%= filename %>.less',
       lessMain: '',
       lessMainCopy: '',
       lessCopy: '',
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
       demo: {
         files: [
           {
-            append: '// CPP UI LESS\n@import "dist/<%= filename %>-<%= pkg.version %>.less";\n',
+            append: '// CPP UI LESS\n@import "dist/<%= filename %>.less";\n',
             input: 'demo/assets/app.less',
           }
         ]
@@ -184,7 +184,7 @@ module.exports = function (grunt) {
       demo: {
         options: {},
         files: {
-          'demo/assets/<%= filename %>-<%= pkg.version %>.demo.css': 'demo/assets/app.less'
+          'demo/assets/<%= filename %>.demo.css': 'demo/assets/app.less'
         }
       }
     },
