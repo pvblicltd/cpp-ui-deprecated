@@ -132,6 +132,7 @@ module.exports = function (grunt) {
     },
     clean: {
       before: {
+
         src: ['dist/**', 'demo/**', '!demo/.git/**']
       },
       options: {
