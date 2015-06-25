@@ -111,15 +111,14 @@ module.exports = function (grunt) {
       },
       mainLess: {
         expand: true,
-        flatten: true,
-        src: 'misc/cpp-bootstrap-wrapper/*',
-        dest: 'dist/less/',
-        filter: 'isFile'
+        cwd: 'misc/cpp-bootstrap-wrapper/',
+        src: '**',
+        dest: 'dist/less/'
       },
       moduleLess: {
         expand: true,
         flatten: true,
-        src: ['src/*/*.less'],
+        src: ['src/**/*.less'],
         dest: 'dist/less/',
         filter: 'isFile'
       },
@@ -129,6 +128,11 @@ module.exports = function (grunt) {
           src: '<%= dist %>/**/*',
           dest: 'demo/assets/'
         }]
+      }
+    },
+    clean: {
+      before: {
+        src: ['dist', 'demo']
       }
     },
     uglify: {
@@ -190,51 +194,13 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: 'misc/**/**',
+        files: ['misc/**'],
         tasks: ['build'],
         options: {
-          interrupt: true
+          spawn: false,
         },
       },
     },
-  });
-
-
-  // Auto increment GIT TAG and PUSH to ORIGIN
-  grunt.registerTask('tag:patch', ['tag']);
-
-  grunt.registerTask('tag:minor', function() {
-    grunt.option('tagType', 'minor');
-    grunt.task.run(['tag']);
-  });
-  grunt.registerTask('tag:major', function() {
-    grunt.option('tagType', 'major');
-    grunt.task.run(['tag']);
-  });
-
-  grunt.registerTask('tag', function() {
-    if (grunt.option('tagType') !== 'major' &&
-      grunt.option('tagType') !== 'minor') {
-      grunt.option('tagType', 'patch');
-    }
-    var done = this.async();
-    exec('git describe --tags --abbrev=0',
-      function(err, stdout, stderr) {
-        if (stderr) {
-          grunt.log.error(stderr);
-        } else {
-          gitVersion = semver.inc(
-            stdout.trim(),
-            grunt.option('tagType')
-          );
-          grunt.log.ok('Tagging: ' + gitVersion +
-            ' (' + grunt.option('tagType') + ')');
-          grunt.option('tag', gitVersion);
-          grunt.task.run(['shell:tag']);
-        }
-        done();
-      }
-    );
   });
 
   //Common ui.cpp module containing all modules for src and templates
@@ -423,7 +389,7 @@ module.exports = function (grunt) {
 
   // First create the module template files then run the builder
   grunt.registerTask('build',function(){
-    grunt.task.run(['html2js', 'copy:mainLess', 'builder', 'less:demo']);
+    grunt.task.run(['clean:before', 'html2js', 'copy:mainLess', 'builder', 'less:demo']);
   });
 
 };
