@@ -1,5 +1,7 @@
 # MOJ Common Platform Bootstrap/AngularJS UI Module #
 
+[![Bower version](https://badge.fury.io/bo/cpp-ui.svg)](http://badge.fury.io/bo/cpp-ui)
+
 ## Introduction
 
 For instructions please go here: [http://pvblicltd.github.io/cpp.ui/](http://pvblicltd.github.io/cpp.ui/)

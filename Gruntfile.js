@@ -190,7 +190,9 @@ module.exports = function (grunt) {
     },
     less: {
       demo: {
-        options: {},
+        options: {
+          relativeUrls: false
+        },
         files: {
           'demo/assets/<%= filename %>.demo.css': 'demo/assets/app.less'
         }
