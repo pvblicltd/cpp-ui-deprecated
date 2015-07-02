@@ -1,7 +1,7 @@
 /*
  * cpp-ui
  * Author: James A B Gray
- * Version: 0.0.4 - 2015-06-25
+ * Version: 0.0.4 - 2015-07-02
  * License: 
  */
 angular.module("ui.cpp", ["ui.cpp.tpls", "ui.cpp.global-nav"]);
