@@ -1,11 +1,90 @@
 /*
  * cpp-ui
  * Author: James A B Gray
- * Version: 0.0.4 - 2015-07-02
+ * Version: 0.0.4 - 2015-07-14
  * License: 
  */
-angular.module("ui.cpp", ["ui.cpp.tpls", "ui.cpp.global-nav"]);
-angular.module("ui.cpp.tpls", ["global-nav/global-nav.html"]);
+angular.module("ui.cpp", ["ui.cpp.tpls", "ui.cpp.footer","ui.cpp.global-nav"]);
+angular.module("ui.cpp.tpls", ["footer/footer.html","global-nav/global-nav.html"]);
+
+angular.module("footer/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("footer/footer.html",
+    "<footer id=\"footer\" class=\"cpp-footer\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-md-10\">\n" +
+    "        <div class=\"footer-meta-inner\">\n" +
+    "          <nav>\n" +
+    "            <ul id=\"menu-footer\" class=\"menu list-inline\">\n" +
+    "              <li class=\"menu-all-government-blogs\"><a href=\"https://www.blog.gov.uk\">All GOV.UK blogs</a></li>\n" +
+    "              <li class=\"menu-all-government-blog-posts\"><a href=\"https://www.blog.gov.uk/all-posts/\">All GOV.UK blog posts</a></li>\n" +
+    "              <li class=\"menu-gov-uk\"><a href=\"https://www.gov.uk\">GOV.UK</a></li>\n" +
+    "              <li class=\"menu-all-departments\"><a href=\"https://www.gov.uk/government/organisations\">All departments</a></li>\n" +
+    "              <li class=\"menu-all-topics\"><a href=\"https://www.gov.uk/government/topics\">All topics</a></li>\n" +
+    "              <li class=\"menu-all-policies\"><a href=\"https://www.gov.uk/government/policies\">All policies</a></li>\n" +
+    "              <li class=\"menu-cookies\"><a href=\"https://www.blog.gov.uk/cookies\">Cookies</a></li>\n" +
+    "            </ul>\n" +
+    "          </nav>\n" +
+    "          <div class=\"open-government-licence\">\n" +
+    "            <p class=\"logo\"><a href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence</a></p>\n" +
+    "            <p>All content is available under the <a href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Open Government Licence v3.0</a>, except where otherwise stated</p>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-2 text-right\">\n" +
+    "        <div id=\"crown-copy-cont\" class=\"text-center pull-right\">\n" +
+    "          <img src=\"assets/img/govuk-crest.png\"/>\n" +
+    "          <br/>\n" +
+    "          <a id=\"crown-copy\" target=\"_blank\" href=\"https://www.nationalarchives.gov.uk/information-management/our-services/crown-copyright.htm\">© Crown copyright</a>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</footer>\n" +
+    "");
+}]);
+
+'use strict';
+// Define module & include the cpp.ui as a dependency
+angular.module('ui.cpp.footer', []);
+
+// footer Service Template
+angular.module('ui.cpp.footer').factory('footerService', function() {
+
+  var footer = { };
+
+  return footer;
+
+});
+
+// footer Filter Template
+angular.module('ui.cpp.footer').filter('footerFilter', function () {
+  return function (input, arg) {
+    return 'output';
+  };
+});
+
+// footer Directive Template
+angular.module('ui.cpp.footer').directive('footerDirective', function () {
+  return {
+    // name: '',
+    // priority: 1,
+    // terminal: true,
+    // scope: {}, // {} = isolate, true = child, false/undefined = no change
+    // controller: function($scope, $element, $attrs, $transclude) {},
+    // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+    // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+    // template: '',
+    // replace: true,
+    // transclude: true,
+    templateUrl: 'footer/footer.html',
+    link: function (scope, element, attrs, fn) {
+
+    }
+  };
+});
+
+
 
 angular.module("global-nav/global-nav.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("global-nav/global-nav.html",
